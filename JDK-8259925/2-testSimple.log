@@ -69,7 +69,7 @@
 025     NullCheck R8
 
 025     B2: #	out( B10 B3 ) <- in( B1 )  Freq: 0.999999
-025     movl    RBP, R11	# spill
+025     movl    RBP, R11	# spill   <--- RBP = R11 = Bar.a.length
 028     addl    RBP, #-7	# int
 02b     testl   RBP, RBP
 02d     jl     B10  P=0.000001 C=-1.000000

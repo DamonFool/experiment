@@ -132,7 +132,7 @@
 0c6     jg,s   B13  P=0.001043 C=6704.000000
 
 0c8     B11: #	out( B6 B12 ) <- in( B10 )  Freq: 954.929
-0c8     testl   RDI, RDI
+0c8     testl   RDI, RDI                                   <---  check idx >= 0
 0ca     jge,s   B6  P=1.000000 C=6701.000000
 
 0cc     B12: #	out( N1 ) <- in( B11 )  Freq: 0.000477465
