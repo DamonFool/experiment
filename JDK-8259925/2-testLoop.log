@@ -1,0 +1,474 @@
+    797  130    b        Bar::testLoop (98 bytes)
+
+============================= C2-compiled nmethod ==============================
+----------------------- MetaData before Compile_id = 130 ------------------------
+{method}
+ - this oop:          0x0000000124401690
+ - method holder:     'Bar'
+ - constants:         0x0000000124401068 constant pool [97]/operands[10] {0x0000000124401068} for 'Bar' cache=0x0000000124401940
+ - access:            0xc1000009  public static 
+ - name:              'testLoop'
+ - signature:         '()V'
+ - max stack:         6
+ - max locals:        3
+ - size of params:    0
+ - method size:       13
+ - vtable index:      -2
+ - i2i entry:         0x000000011563f260
+ - adapters:          AHE@0x00007fca948e4e00: 0x i2c: 0x00000001157097e0 c2i: 0x00000001157098c0 c2iUV: 0x0000000115709886 c2iNCI: 0x00000001157098fd
+ - compiled entry     0x00000001157098c0
+ - code size:         98
+ - code start:        0x0000000124401618
+ - code end (excl):   0x000000012440167a
+ - method data:       0x0000000124403a38
+ - checked ex length: 0
+ - linenumber start:  0x000000012440167a
+ - localvar length:   0
+
+------------------------ OptoAssembly for Compile_id = 130 -----------------------
+#
+#  void (  )
+#
+# -- Old rsp -- Framesize: 96 --
+#r583 rsp+92: in_preserve
+#r582 rsp+88: return address
+#r581 rsp+84: in_preserve
+#r580 rsp+80: saved fp register
+#r579 rsp+76: pad2, stack alignment
+#r578 rsp+72: pad2, stack alignment
+#r577 rsp+68: Fixed slot 1
+#r576 rsp+64: Fixed slot 0
+#r599 rsp+60: spill
+#r598 rsp+56: spill
+#r597 rsp+52: spill
+#r596 rsp+48: spill
+#r595 rsp+44: spill
+#r594 rsp+40: spill
+#r593 rsp+36: spill
+#r592 rsp+32: spill
+#r591 rsp+28: spill
+#r590 rsp+24: spill
+#r589 rsp+20: spill
+#r588 rsp+16: spill
+#r587 rsp+12: spill
+#r586 rsp+ 8: spill
+#r585 rsp+ 4: spill
+#r584 rsp+ 0: spill
+#
+000     N1: #	out( B1 ) <- in( B68 B54 B60 B67 B66 B55 B51 B49 B61 B53 B52 B56 B65 B57 B64 B58 B63 B59 B62 )  Freq: 1
+
+000     B1: #	out( B68 B2 ) <- BLOCK HEAD IS JUNK  Freq: 1
+000     # stack bang (488 bytes)
+	pushq   rbp	# Save rbp
+	subq    rsp, #80	# Create frame
+
+00c     movq    R11, java/lang/Class:exact *	# ptr
+016     movl    RBX, [R11 + #116 (8-bit)]	# compressed ptr ! Field: Bar.a
+        nop 	# 6 bytes pad for loops and calls
+020     movl    RDX, [R12 + RBX << 3 + #12] (compressed oop addressing)	# range
+025     NullCheck RBX
+
+025     B2: #	out( B50 B3 ) <- in( B1 )  Freq: 0.999999
+025     movl    R10, [R11 + #124 (8-bit)]	# compressed ptr ! Field: Bar.c
+029     movl    R11, [R11 + #120 (8-bit)]	# compressed ptr ! Field: Bar.b
+02d     decode_heap_oop_not_null R9,RBX
+031     movl    R13, RDX	# spill
+034     addl    R13, #-7	# int
+038     # TLS is in R15
+038     xorl    R14, R14	# int
+        nop 	# 5 bytes pad for loops and calls
+040     cmpl    RDX, #8
+043     jl     B50  P=0.001043 C=6711.000000
+
+049     B3: #	out( B54 B4 ) <- in( B2 )  Freq: 0.998956
+049     testl   R13, R13
+04c     jl     B54  P=0.000001 C=-1.000000
+
+052     B4: #	out( B54 B5 ) <- in( B3 )  Freq: 0.998955
+052     movl    RAX, [R12 + R11 << 3 + #12] (compressed oop addressing)	# range
+057     NullCheck R11
+
+057     B5: #	out( B54 B6 ) <- in( B4 )  Freq: 0.998954
+057     addl    RAX, #-7	# int
+05a     testl   RAX, RAX
+        nop 	# 4 bytes pad for loops and calls
+060     jl     B54  P=0.000001 C=-1.000000
+
+066     B6: #	out( B54 B7 ) <- in( B5 )  Freq: 0.998953
+066     movl    RCX, [R12 + R10 << 3 + #12] (compressed oop addressing)	# range
+06b     NullCheck R10
+
+06b     B7: #	out( B54 B8 ) <- in( B6 )  Freq: 0.998952
+06b     addl    RCX, #-7	# int
+06e     testl   RCX, RCX
+070     jl     B54  P=0.000001 C=-1.000000
+
+076     B8: #	out( B10 ) <- in( B7 )  Freq: 0.998951
+076     decode_heap_oop_not_null RSI,R10
+07a     decode_heap_oop_not_null RBP,R11
+07e     xorl    R8, R8	# int
+081     jmp,s   B10
+
+083     B9: #	out( B10 ) <- in( B13 ) top-of-loop Freq: 953.913
+083     movl    R8, RDI	# spill
+086     movdl   R10, XMM1	# spill
+
+08b     B10: #	out( B51 B11 ) <- in( B8 B9 ) Loop( B10-B9 inner ) Freq: 954.912
+08b     cmpl    R8, R13	# unsigned
+08e     jnb,u   B51  P=0.000001 C=-1.000000
+
+094     B11: #	out( B52 B12 ) <- in( B10 )  Freq: 954.911
+094     # castII of R8
+094     load_vector XMM0,[R9 + #16 + R8 << #2]
+        nop 	# 5 bytes pad for loops and calls
+0a0     cmpl    R8, RAX	# unsigned
+0a3     jnb,u   B52  P=0.000001 C=-1.000000
+
+0a9     B12: #	out( B53 B13 ) <- in( B11 )  Freq: 954.91
+0a9     vpaddd  XMM0,XMM0,[RBP + #16 + R8 << #2]	! add packedI
+0b0     cmpl    R8, RCX	# unsigned
+0b3     jnb,u   B53  P=0.000001 C=-1.000000
+
+0b9     B13: #	out( B9 B14 ) <- in( B12 )  Freq: 954.909
+0b9     movdl   XMM1, R10	# spill
+0be     store_vector [RSI + #16 + R8 << #2],XMM0
+	
+0c5     movq    R10, [R15 + #304 (32-bit)]	# ptr
+0cc     movl    RDI, R8	# spill
+0cf     addl    RDI, #8	# int
+0d2     testl   rax, [R10]	# Safepoint: poll for GC        # Bar::testLoop @ bci:64 (line 17) L[0]=RDI L[1]=_ L[2]=_
+        # OopMap {r11=NarrowOop r9=Oop rbx=NarrowOop rsi=Oop rbp=Oop xmm1=NarrowOop off=210/0xd2}
+0d5     addl    R8, #16	# int
+0d9     cmpl    R8, RDX
+        nop 	# 4 bytes pad for loops and calls
+0e0     jle,s   B9  P=0.998957 C=6704.000000
+
+0e2     B14: #	out( B15 ) <- in( B13 )  Freq: 0.996048
+0e2     movdl   R10, XMM1	# spill
+
+0e7     B15: #	out( B49 B16 ) <- in( B14 B50 )  Freq: 0.997091
+0e7     cmpl    RDI, RDX
+0e9     jge     B49  P=0.500000 C=-1.000000
+
+0ef     B16: #	out( B55 B17 ) <- in( B15 )  Freq: 0.498546
+0ef     cmpl    RDI, RDX	# unsigned
+0f1     jnb,u   B55  P=0.000001 C=-1.000000
+
+0f7     B17: #	out( B55 B18 ) <- in( B16 )  Freq: 0.498545
+0f7     movl    RSI, RDX	# spill
+0f9     decl    RSI	# int
+0fb     cmpl    RSI, RDX	# unsigned
+        nop 	# 3 bytes pad for loops and calls
+100     jnb,u   B55  P=0.000001 C=-1.000000
+
+106     B18: #	out( B55 B19 ) <- in( B17 )  Freq: 0.498545
+106     movl    RBX, [R12 + R11 << 3 + #12] (compressed oop addressing)	# range
+10b     NullCheck R11
+
+10b     B19: #	out( B55 B20 ) <- in( B18 )  Freq: 0.498544
+10b     cmpl    RDI, RBX	# unsigned
+10d     jnb,u   B55  P=0.000001 C=-1.000000
+
+113     B20: #	out( B55 B21 ) <- in( B19 )  Freq: 0.498544
+113     cmpl    RSI, RBX	# unsigned
+115     jnb,u   B55  P=0.000001 C=-1.000000
+
+11b     B21: #	out( B55 B22 ) <- in( B20 )  Freq: 0.498543
+        nop 	# 5 bytes pad for loops and calls
+120     movl    RBP, [R12 + R10 << 3 + #12] (compressed oop addressing)	# range
+125     NullCheck R10
+
+125     B22: #	out( B55 B23 ) <- in( B21 )  Freq: 0.498543
+125     cmpl    RDI, RBP	# unsigned
+127     jnb,u   B55  P=0.000001 C=-1.000000
+
+12d     B23: #	out( B55 B24 ) <- in( B22 )  Freq: 0.498542
+12d     cmpl    RSI, RBP	# unsigned
+12f     jnb,u   B55  P=0.000001 C=-1.000000
+
+135     B24: #	out( B25 ) <- in( B23 )  Freq: 0.498542
+135     decode_heap_oop_not_null RCX,R10
+139     decode_heap_oop_not_null RAX,R11
+13d     movl    R10, RCX	# ptr -> int
+140     shrl    R10, #2
+144     andl    R10, #7	# int
+148     addl    R10, RDI	# int
+14b     movl    R8, #3	# int
+151     subl    R8, R10	# int
+154     andl    R8, #7	# int
+158     addl    R8, RDI	# int
+15b     incl    R8	# int
+15e     cmpl    R8, RDX
+161     cmovlgt R8, RDX	# min
+        nop 	# 3 bytes pad for loops and calls
+
+168     B25: #	out( B25 B26 ) <- in( B24 B25 ) Loop( B25-B25 inner pre of N1706) Freq: 4.98541
+168     movl    R10, [RAX + #16 + RDI << #2]	# int
+16d     addl    R10, [R9 + #16 + RDI << #2]	# int
+172     movl    [RCX + #16 + RDI << #2], R10	# int
+177     incl    RDI	# int
+179     cmpl    RDI, R8
+17c     jl,s   B25	# loop end  P=0.900000 C=-1.000000
+
+17e     B26: #	out( B46 B27 ) <- in( B25 )  Freq: 0.498542
+17e     movl    R10, RDX	# spill
+181     addl    R10, #-31	# int
+185     movl    R8, #-2147483648	# int
+18b     cmpl    RSI, R10
+18e     cmovll R10, R8	# signed, int
+192     cmpl    RDI, R10
+195     jge     B46  P=0.000001 C=-1.000000
+
+19b     B27: #	out( B56 B28 ) <- in( B26 )  Freq: 0.498541
+19b     # castII of RDI
+19b     cmpl    RDI, RBP	# unsigned
+        nop 	# 3 bytes pad for loops and calls
+1a0     jnb,u   B56  P=0.000001 C=-1.000000
+
+1a6     B28: #	out( B57 B29 ) <- in( B27 )  Freq: 0.498541
+1a6     cmpl    RDI, RBP	# unsigned
+1a8     jnb,u   B57  P=0.000001 C=-1.000000
+
+1ae     B29: #	out( B58 B30 ) <- in( B28 )  Freq: 0.49854
+1ae     cmpl    RDI, RBX	# unsigned
+1b0     jnb,u   B58  P=0.000001 C=-1.000000
+
+1b6     B30: #	out( B59 B31 ) <- in( B29 )  Freq: 0.498539
+1b6     cmpl    RDI, RBX	# unsigned
+1b8     jnb,u   B59  P=0.000001 C=-1.000000
+
+1be     B31: #	out( B60 B32 ) <- in( B30 )  Freq: 0.498539
+        nop 	# 2 bytes pad for loops and calls
+1c0     cmpl    RDI, RDX	# unsigned
+1c2     jnb,u   B60  P=0.000001 C=-1.000000
+
+1c8     B32: #	out( B61 B33 ) <- in( B31 )  Freq: 0.498538
+1c8     cmpl    RDI, RDX	# unsigned
+1ca     jnb,u   B61  P=0.000001 C=-1.000000
+
+1d0     B33: #	out( B62 B34 ) <- in( B32 )  Freq: 0.498538
+1d0     cmpl    RDI, RDX	# unsigned
+1d2     jnb,u   B62  P=0.000001 C=-1.000000
+
+1d8     B34: #	out( B63 B35 ) <- in( B33 )  Freq: 0.498537
+1d8     movl    R11, RDI	# spill
+1db     addl    R11, #31	# int
+        nop 	# 1 bytes pad for loops and calls
+1e0     cmpl    R11, RDX	# unsigned
+1e3     jnb,u   B63  P=0.000001 C=-1.000000
+
+1e9     B35: #	out( B64 B36 ) <- in( B34 )  Freq: 0.498537
+1e9     cmpl    RDI, RBX	# unsigned
+1eb     jnb,u   B64  P=0.000001 C=-1.000000
+
+1f1     B36: #	out( B65 B37 ) <- in( B35 )  Freq: 0.498536
+1f1     cmpl    R11, RBX	# unsigned
+1f4     jnb,u   B65  P=0.000001 C=-1.000000
+
+1fa     B37: #	out( B66 B38 ) <- in( B36 )  Freq: 0.498536
+1fa     cmpl    RDI, RBP	# unsigned
+        nop 	# 4 bytes pad for loops and calls
+200     jnb,u   B66  P=0.000001 C=-1.000000
+
+206     B38: #	out( B67 B39 ) <- in( B37 )  Freq: 0.498535
+206     cmpl    R11, RBP	# unsigned
+209     jnb,u   B67  P=0.000001 C=-1.000000
+
+20f     B39: #	out( B40 ) <- in( B38 )  Freq: 0.498535
+20f     movl    RBX, #32000	# int
+
+214     B40: #	out( B41 ) <- in( B39 B42 ) Loop( B40-B42 ) Freq: 4.98535
+214     movl    RBP, R10	# spill
+217     subl    RBP, RDI	# int
+219     cmpl    R10, RDI
+21c     cmovll RBP, R14	# signed, int
+220     cmpl    RBP, #32000	# unsigned
+226     cmovlnbe RBP, RBX	# unsigned, int
+229     addl    RBP, RDI	# int
+        nop 	# 5 bytes pad for loops and calls
+
+230     B41: #	out( B41 B42 ) <- in( B40 B41 ) Loop( B41-B41 inner main of N272 strip mined) Freq: 49.8535
+230     load_vector XMM0,[RAX + #16 + RDI << #2]
+236     vpaddd  XMM0,XMM0,[R9 + #16 + RDI << #2]	! add packedI
+23d     store_vector [RCX + #16 + RDI << #2],XMM0
+	
+243     movslq  R11, RDI	# i2l
+246     load_vector XMM0,[RAX + #48 + R11 << #2]
+24d     vpaddd  XMM0,XMM0,[R9 + #48 + R11 << #2]	! add packedI
+254     store_vector [RCX + #48 + R11 << #2],XMM0
+	
+25b     load_vector XMM0,[RAX + #80 + R11 << #2]
+262     vpaddd  XMM0,XMM0,[R9 + #80 + R11 << #2]	! add packedI
+269     store_vector [RCX + #80 + R11 << #2],XMM0
+	
+270     load_vector XMM0,[RAX + #112 + R11 << #2]
+277     vpaddd  XMM0,XMM0,[R9 + #112 + R11 << #2]	! add packedI
+27e     store_vector [RCX + #112 + R11 << #2],XMM0
+	
+285     addl    RDI, #32	# int
+288     cmpl    RDI, RBP
+28a     jl,s   B41	# loop end  P=0.900000 C=-1.000000
+
+28c     B42: #	out( B40 B43 ) <- in( B41 )  Freq: 4.98535
+28c     movq    R11, [R15 + #304 (32-bit)]	# ptr
+293     testl   rax, [R11]	# Safepoint: poll for GC        # Bar::testLoop @ bci:94 (line 23) L[0]=RDI L[1]=_ L[2]=_
+        # OopMap {r9=Oop rcx=Oop rax=Oop off=659/0x293}
+296     cmpl    RDI, R10
+299     jl     B40  P=0.900000 C=-1.000000
+
+29f     B43: #	out( B46 B44 ) <- in( B42 )  Freq: 0.498535
+29f     cmpl    RSI, R13
+2a2     cmovll R13, R8	# signed, int
+2a6     cmpl    RDI, R13
+2a9     jge,s   B46  P=0.500000 C=-1.000000
+
+2ab     B44: #	out( B45 ) <- in( B43 )  Freq: 0.249267
+2ab     # castII of RDI
+        nop 	# 1 bytes pad for loops and calls
+
+2ac     B45: #	out( B45 B46 ) <- in( B44 B45 ) Loop( B45-B45 inner post of N2367) Freq: 2.49267
+2ac     load_vector XMM0,[RAX + #16 + RDI << #2]
+2b2     vpaddd  XMM0,XMM0,[R9 + #16 + RDI << #2]	! add packedI
+2b9     store_vector [RCX + #16 + RDI << #2],XMM0
+	
+2bf     addl    RDI, #8	# int
+2c2     cmpl    RDI, R13
+2c5     jl,s   B45	# loop end  P=0.900000 C=-1.000000
+
+2c7     B46: #	out( B49 B47 ) <- in( B26 B45 B43 )  Freq: 0.498535
+2c7     cmpl    RDI, RDX
+2c9     jge,s   B49  P=0.500000 C=-1.000000
+
+2cb     B47: #	out( B48 ) <- in( B46 )  Freq: 0.249268
+2cb     # castII of RDI
+        nop 	# 1 bytes pad for loops and calls
+
+2cc     B48: #	out( B48 B49 ) <- in( B47 B48 ) Loop( B48-B48 inner post of N1706) Freq: 2.49268
+2cc     movl    R11, [RAX + #16 + RDI << #2]	# int
+2d1     addl    R11, [R9 + #16 + RDI << #2]	# int
+2d6     movl    [RCX + #16 + RDI << #2], R11	# int
+2db     incl    RDI	# int
+        nop 	# 3 bytes pad for loops and calls
+2e0     cmpl    RDI, RDX
+2e2     jl,s   B48	# loop end  P=0.900000 C=-1.000000
+
+2e4     B49: #	out( N1 ) <- in( B48 B46 B15 )  Freq: 0.997081
+2e4     vzeroupper
+	addq    rsp, 80	# Destroy frame
+	popq    rbp
+	cmpq     rsp, poll_offset[r15_thread] 
+	ja       #safepoint_stub	# Safepoint: poll for GC
+
+2f9     ret
+
+2fa     B50: #	out( B15 ) <- in( B2 )  Freq: 0.00104306
+2fa     xorl    RDI, RDI	# int
+        nop 	# 4 bytes pad for loops and calls
+300     jmp     B15
+
+305     B51: #	out( N1 ) <- in( B10 )  Freq: 0.000967592
+305     movl    RSI, #-28	# int
+30a     movl    [rsp + #0], R8	# spill
+30e     movl    [rsp + #4], R13	# spill
+313     movl    [rsp + #8], RBX	# spill
+        nop 	# 1 bytes pad for loops and calls
+318     call,static  wrapper for: uncommon_trap(reason='range_check' action='make_not_entrant' debug_id='0')
+        # java.util.Objects::checkIndex @ bci:3 (line 359) L[0]=_ L[1]=_ STK[0]=rsp + #0 STK[1]=rsp + #4 STK[2]=#NULL
+        # jdk.incubator.vector.VectorIntrinsics::checkFromIndexSize @ bci:47 (line 74) L[0]=_ L[1]=_ L[2]=_ L[3]=_
+        # jdk.incubator.vector.IntVector::fromArray @ bci:9 (line 2689) L[0]=#Ptr0x00007fca95d8cf70 L[1]=rsp + #8 L[2]=_ L[3]=_
+        # Bar::testLoop @ bci:26 (line 18) L[0]=rsp + #0 L[1]=_ L[2]=_
+        # OopMap {[8]=NarrowOop off=800/0x320}
+320     stop	# ShouldNotReachHere
+
+334     B52: #	out( N1 ) <- in( B11 )  Freq: 0.000967592
+334     movl    RSI, #-28	# int
+339     movl    [rsp + #0], R8	# spill
+33d     movl    [rsp + #4], RAX	# spill
+341     vmovdqu [rsp + 32],XMM0	# spill
+347     movl    [rsp + #8], R11	# spill
+34c     call,static  wrapper for: uncommon_trap(reason='range_check' action='make_not_entrant' debug_id='0')
+        # java.util.Objects::checkIndex @ bci:3 (line 359) L[0]=_ L[1]=_ STK[0]=rsp + #0 STK[1]=rsp + #4 STK[2]=#NULL
+        # jdk.incubator.vector.VectorIntrinsics::checkFromIndexSize @ bci:47 (line 74) L[0]=_ L[1]=_ L[2]=_ L[3]=_
+        # jdk.incubator.vector.IntVector::fromArray @ bci:9 (line 2689) L[0]=#Ptr0x00007fca95d8cf70 L[1]=rsp + #8 L[2]=_ L[3]=_
+        # Bar::testLoop @ bci:37 (line 19) L[0]=rsp + #0 L[1]=#ScObj0 L[2]=_
+        # ScObj0 jdk/incubator/vector/Int256Vector={ [payload :0]=rsp + #32 }
+        # OopMap {[8]=NarrowOop off=852/0x354}
+354     stop	# ShouldNotReachHere
+
+368     B53: #	out( N1 ) <- in( B12 )  Freq: 0.000967591
+368     movl    RSI, #-28	# int
+36d     movl    [rsp + #0], R8	# spill
+371     movl    [rsp + #4], RCX	# spill
+375     vmovdqu [rsp + 32],XMM0	# spill
+37b     movl    [rsp + #8], R10	# spill
+380     call,static  wrapper for: uncommon_trap(reason='range_check' action='make_not_entrant' debug_id='0')
+        # java.util.Objects::checkIndex @ bci:3 (line 359) L[0]=_ L[1]=_ STK[0]=rsp + #0 STK[1]=rsp + #4 STK[2]=#NULL
+        # jdk.incubator.vector.VectorIntrinsics::checkFromIndexSize @ bci:47 (line 74) L[0]=_ L[1]=_ L[2]=_ L[3]=_
+        # jdk.incubator.vector.IntVector::intoArray @ bci:7 (line 2960) L[0]=#ScObj0 L[1]=rsp + #8 L[2]=_ L[3]=_
+        # ScObj0 jdk/incubator/vector/Int256Vector={ [payload :0]=rsp + #32 }
+        # Bar::testLoop @ bci:50 (line 20) L[0]=rsp + #0 L[1]=_ L[2]=_
+        # OopMap {[8]=NarrowOop off=904/0x388}
+388     stop	# ShouldNotReachHere
+
+39c     B54: #	out( N1 ) <- in( B7 B3 B4 B5 B6 )  Freq: 5.0213e-06
+39c     movl    RSI, #-138	# int
+3a1     movl    RBP, RDX	# spill
+        nop 	# 1 bytes pad for loops and calls
+3a4     call,static  wrapper for: uncommon_trap(reason='predicate' action='maybe_recompile' debug_id='0')
+        # Bar::testLoop @ bci:16 (line 17) L[0]=#0 L[1]=_ L[2]=_ STK[0]=#8 STK[1]=RBP
+        # OopMap {off=940/0x3ac}
+3ac     stop	# ShouldNotReachHere
+
+3c0     B55: #	out( N1 ) <- in( B21 B16 B17 B23 B22 B18 B19 B20 )  Freq: 4.04131e-06
+3c0     movl    RSI, #-138	# int
+3c5     movl    [rsp + #0], RDI	# spill
+3c8     movl    [rsp + #4], RDX	# spill
+3cc     call,static  wrapper for: uncommon_trap(reason='predicate' action='maybe_recompile' debug_id='0')
+        # Bar::testLoop @ bci:72 (line 23) L[0]=rsp + #0 L[1]=_ L[2]=_ STK[0]=rsp + #0 STK[1]=rsp + #4
+        # OopMap {off=980/0x3d4}
+3d4     stop	# ShouldNotReachHere
+
+3e8     B56: #	out( N1 ) <- in( B27 )  Freq: 5.05161e-07
+3e8     stop	# ShouldNotReachHere
+
+3fc     B57: #	out( N1 ) <- in( B28 )  Freq: 5.05161e-07
+3fc     stop	# ShouldNotReachHere
+
+410     B58: #	out( N1 ) <- in( B29 )  Freq: 5.0516e-07
+410     stop	# ShouldNotReachHere
+
+424     B59: #	out( N1 ) <- in( B30 )  Freq: 5.0516e-07
+424     stop	# ShouldNotReachHere
+
+438     B60: #	out( N1 ) <- in( B31 )  Freq: 5.05159e-07
+438     stop	# ShouldNotReachHere
+
+44c     B61: #	out( N1 ) <- in( B32 )  Freq: 5.05159e-07
+44c     stop	# ShouldNotReachHere
+
+460     B62: #	out( N1 ) <- in( B33 )  Freq: 5.05158e-07
+460     stop	# ShouldNotReachHere
+
+474     B63: #	out( N1 ) <- in( B34 )  Freq: 5.05158e-07
+474     stop	# ShouldNotReachHere
+
+488     B64: #	out( N1 ) <- in( B35 )  Freq: 5.05157e-07
+488     stop	# ShouldNotReachHere
+
+49c     B65: #	out( N1 ) <- in( B36 )  Freq: 5.05157e-07
+49c     stop	# ShouldNotReachHere
+
+4b0     B66: #	out( N1 ) <- in( B37 )  Freq: 5.05156e-07
+4b0     stop	# ShouldNotReachHere
+
+4c4     B67: #	out( N1 ) <- in( B38 )  Freq: 5.05155e-07
+4c4     stop	# ShouldNotReachHere
+
+4d8     B68: #	out( N1 ) <- in( B1 )  Freq: 1.01328e-06
+4d8     movl    RSI, #-10	# int
+        nop 	# 3 bytes pad for loops and calls
+4e0     call,static  wrapper for: uncommon_trap(reason='null_check' action='maybe_recompile' debug_id='0')
+        # Bar::testLoop @ bci:15 (line 17) L[0]=_ L[1]=_ L[2]=_ STK[0]=_ STK[1]=#NULL
+        # OopMap {off=1256/0x4e8}
+4e8     stop	# ShouldNotReachHere
+

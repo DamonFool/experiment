@@ -1,0 +1,18 @@
+diff --git a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorIntrinsics.java b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorIntrinsics.java
+index e6811c6246c..e737524ec14 100644
+--- a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorIntrinsics.java
++++ b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorIntrinsics.java
+@@ -72,6 +72,13 @@ import java.util.Objects;
+             case 0: return ix; // no range check
+             case 1: return Objects.checkFromIndexSize(ix, vlen, length);
+             case 2: return Objects.checkIndex(ix, length - (vlen - 1));
++            case 3:
++                if (ix < 0 || ix > length - vlen) {
++                    String msg = String.format("Range [%d, %d + %d) out of bounds for length %d",
++                                                ix, ix, vlen, length);
++                    throw new IndexOutOfBoundsException(msg);
++                }
++                return ix;
+             default: throw new InternalError();
+         }
+     }

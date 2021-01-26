@@ -1,0 +1,141 @@
+    331   41    b        Bar::testSimple (20 bytes)
+
+============================= C2-compiled nmethod ==============================
+----------------------- MetaData before Compile_id = 41 ------------------------
+{method}
+ - this oop:          0x0000000115c01578
+ - method holder:     'Bar'
+ - constants:         0x0000000115c01068 constant pool [97]/operands[10] {0x0000000115c01068} for 'Bar' cache=0x0000000115c01940
+ - access:            0x81000009  public static 
+ - name:              'testSimple'
+ - signature:         '()V'
+ - max stack:         4
+ - max locals:        1
+ - size of params:    0
+ - method size:       13
+ - vtable index:      -2
+ - i2i entry:         0x000000010ef17260
+ - adapters:          AHE@0x00007fafcf81ae00: 0x i2c: 0x000000010efe17e0 c2i: 0x000000010efe18c0 c2iUV: 0x000000010efe1886 c2iNCI: 0x000000010efe18fd
+ - compiled entry     0x000000010efe18c0
+ - code size:         20
+ - code start:        0x0000000115c01558
+ - code end (excl):   0x0000000115c0156c
+ - method data:       0x0000000115c03800
+ - checked ex length: 0
+ - linenumber start:  0x0000000115c0156c
+ - localvar length:   0
+
+------------------------ OptoAssembly for Compile_id = 41 -----------------------
+#
+#  void (  )
+#
+# -- Old rsp -- Framesize: 96 --
+#r583 rsp+92: in_preserve
+#r582 rsp+88: return address
+#r581 rsp+84: in_preserve
+#r580 rsp+80: saved fp register
+#r579 rsp+76: pad2, stack alignment
+#r578 rsp+72: pad2, stack alignment
+#r577 rsp+68: Fixed slot 1
+#r576 rsp+64: Fixed slot 0
+#r599 rsp+60: spill
+#r598 rsp+56: spill
+#r597 rsp+52: spill
+#r596 rsp+48: spill
+#r595 rsp+44: spill
+#r594 rsp+40: spill
+#r593 rsp+36: spill
+#r592 rsp+32: spill
+#r591 rsp+28: spill
+#r590 rsp+24: spill
+#r589 rsp+20: spill
+#r588 rsp+16: spill
+#r587 rsp+12: spill
+#r586 rsp+ 8: spill
+#r585 rsp+ 4: spill
+#r584 rsp+ 0: spill
+#
+000     N1: #	out( B1 ) <- in( B8 B6 B7 B5 B9 )  Freq: 1
+
+000     B1: #	out( B8 B2 ) <- BLOCK HEAD IS JUNK  Freq: 1
+000     # stack bang (384 bytes)
+	pushq   rbp	# Save rbp
+	subq    rsp, #80	# Create frame
+
+00c     movq    R10, java/lang/Class:exact *	# ptr
+016     movl    R11, [R10 + #116 (8-bit)]	# compressed ptr ! Field: Bar.a
+        nop 	# 6 bytes pad for loops and calls
+020     movl    R9, [R12 + R11 << 3 + #12] (compressed oop addressing)	# range
+025     NullCheck R11
+
+025     B2: #	out( B6 B3 ) <- in( B1 )  Freq: 0.999999
+025     movl    RBP, R9	# spill
+028     addl    RBP, #-8	# int
+02b     testl   RBP, RBP
+02d     jl,s   B6  P=0.000000 C=6701.000000
+
+02f     B3: #	out( B9 B4 ) <- in( B2 )  Freq: 0.999999
+02f     movl    R8, [R10 + #120 (8-bit)]	# compressed ptr ! Field: Bar.b
+033     movl    R10, [R12 + R8 << 3 + #12] (compressed oop addressing)	# range
+038     NullCheck R8
+
+038     B4: #	out( B7 B5 ) <- in( B3 )  Freq: 0.999997
+038     load_vector XMM0,[R12 + R11 << 3 + #16] (compressed oop addressing)
+03f     movl    RBP, R10	# spill
+042     addl    RBP, #-8	# int
+045     testl   RBP, RBP
+047     jl,s   B7  P=0.000000 C=6701.000000
+
+049     B5: #	out( N1 ) <- in( B4 )  Freq: 0.999997
+049     store_vector [R12 + R8 << 3 + #16] (compressed oop addressing),XMM0
+	
+050     vzeroupper
+	addq    rsp, 80	# Destroy frame
+	popq    rbp
+	cmpq     rsp, poll_offset[r15_thread] 
+	ja       #safepoint_stub	# Safepoint: poll for GC
+
+065     ret
+
+066     B6: #	out( N1 ) <- in( B2 )  Freq: 4.76837e-07
+066     movl    RSI, #-187	# int
+06b     movl    [rsp + #0], R11	# spill
+06f     movl    [rsp + #4], R9	# spill
+074     call,static  wrapper for: uncommon_trap(reason='unstable_if' action='reinterpret' debug_id='0')
+        # jdk.incubator.vector.VectorIntrinsics::checkFromIndexSize @ bci:59 (line 76) L[0]=#0 L[1]=#8 L[2]=rsp + #4 L[3]=_ STK[0]=#0 STK[1]=RBP
+        # jdk.incubator.vector.IntVector::fromArray @ bci:9 (line 2689) L[0]=#Ptr0x00007fafd239d880 L[1]=rsp + #0 L[2]=_ L[3]=_
+        # Bar::testSimple @ bci:7 (line 11) L[0]=_
+        # OopMap {[0]=NarrowOop off=124/0x7c}
+07c     stop	# ShouldNotReachHere
+
+090     B7: #	out( N1 ) <- in( B4 )  Freq: 4.76836e-07
+090     movl    RSI, #-187	# int
+095     movl    [rsp + #0], R8	# spill
+099     movl    [rsp + #4], R10	# spill
+09e     vmovdqu [rsp + 32],XMM0	# spill
+0a4     call,static  wrapper for: uncommon_trap(reason='unstable_if' action='reinterpret' debug_id='0')
+        # jdk.incubator.vector.VectorIntrinsics::checkFromIndexSize @ bci:59 (line 76) L[0]=#0 L[1]=#8 L[2]=rsp + #4 L[3]=_ STK[0]=#0 STK[1]=RBP
+        # jdk.incubator.vector.IntVector::intoArray @ bci:7 (line 2960) L[0]=#ScObj0 L[1]=rsp + #0 L[2]=_ L[3]=_
+        # ScObj0 jdk/incubator/vector/Int256Vector={ [payload :0]=rsp + #32 }
+        # Bar::testSimple @ bci:16 (line 12) L[0]=_
+        # OopMap {[0]=NarrowOop off=172/0xac}
+0ac     stop	# ShouldNotReachHere
+
+0c0     B8: #	out( N1 ) <- in( B1 )  Freq: 1.01328e-06
+0c0     movl    RSI, #-10	# int
+        nop 	# 3 bytes pad for loops and calls
+0c8     call,static  wrapper for: uncommon_trap(reason='null_check' action='maybe_recompile' debug_id='0')
+        # jdk.incubator.vector.IntVector::fromArray @ bci:8 (line 2689) L[0]=_ L[1]=_ L[2]=_ L[3]=_ STK[0]=_ STK[1]=_ STK[2]=#NULL
+        # Bar::testSimple @ bci:7 (line 11) L[0]=_
+        # OopMap {off=208/0xd0}
+0d0     stop	# ShouldNotReachHere
+
+0e4     B9: #	out( N1 ) <- in( B3 )  Freq: 1.01328e-06
+0e4     movl    RSI, #-10	# int
+        nop 	# 3 bytes pad for loops and calls
+0ec     call,static  wrapper for: uncommon_trap(reason='null_check' action='maybe_recompile' debug_id='0')
+        # jdk.incubator.vector.IntVector::intoArray @ bci:6 (line 2960) L[0]=_ L[1]=_ L[2]=_ L[3]=_ STK[0]=_ STK[1]=_ STK[2]=#NULL
+        # Bar::testSimple @ bci:16 (line 12) L[0]=_
+        # OopMap {off=244/0xf4}
+0f4     stop	# ShouldNotReachHere
+
